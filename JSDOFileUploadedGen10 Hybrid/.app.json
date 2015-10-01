@@ -1,15 +1,70 @@
 {
   "type": "kendo-ui-mobile",
-  "isNew": true,
+  "views": [
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "homeView",
+      "components": [],
+      "title": "Home View",
+      "addToNavigation": true,
+      "icon": "home"
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "authenticationView",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:authentication",
+          "name": "authenticationViewModel",
+          "dataProvider": "progressDataProvider",
+          "emailLabel": "Email",
+          "passwordLabel": "Password",
+          "signinLabel": "Sign In",
+          "signinRedirect": "homeView",
+          "enableRegistration": false
+        }
+      ],
+      "title": "Authentication",
+      "addToNavigation": true,
+      "icon": "home"
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "dataListView",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:list",
+          "name": "dataListViewModel",
+          "dataProvider": "progressDataProvider",
+          "collection": "Customer",
+          "headerField": "Name",
+          "masterDetails": true,
+          "detailSubHeaderField": "Address",
+          "detailDescriptionField": "Phone",
+          "pullToRefresh": false,
+          "endlessScroll": false
+        }
+      ],
+      "title": "Data List",
+      "addToNavigation": true,
+      "icon": "organize"
+    }
+  ],
   "dataProviders": [
     {
-      "type": "dataProvider",
-      "title": "DefaultProvider",
-      "name": "defaultProvider",
-      "source": "everlive",
-      "offlineStorage": true,
-      "everliveKey": "ROwkU5jexeWYuhIR",
-      "everliveUrl": ""
+      "type": "kendo-ui-mobile:dataProvider",
+      "name": "progressDataProvider",
+      "catalogContent": "[{\"name\":\"Customer\",\"path\":\"/Customer\",\"schema\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"dsCustomer\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"eCustomer\":{\"type\":\"array\",\"items\":{\"additionalProperties\":false,\"properties\":{\"_id\":{\"type\":\"string\",\"name\":\"_id\"},\"CustNum\":{\"type\":\"integer\",\"ablType\":\"INTEGER\",\"default\":0,\"title\":\"CustNum\",\"name\":\"CustNum\"},\"Name\":{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"Name\",\"name\":\"Name\"},\"Address\":{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"Address\",\"name\":\"Address\"},\"Phone\":{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"Phone\",\"name\":\"Phone\"},\"SalesRep\":{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"SalesRep\",\"name\":\"SalesRep\"},\"Balance\":{\"type\":\"number\",\"ablType\":\"DECIMAL\",\"default\":0,\"title\":\"Balance\",\"name\":\"Balance\"},\"State\":{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"State\",\"name\":\"State\"},\"numOrders\":{\"type\":\"integer\",\"ablType\":\"INTEGER\",\"default\":0,\"title\":\"numOrders\",\"name\":\"numOrders\"}}}}}}}},\"operations\":[{\"path\":\"\",\"type\":\"update\",\"verb\":\"put\",\"params\":[{\"name\":\"dsCustomer\",\"type\":\"REQUEST_BODY\"}],\"url\":\"/rest/CustomerService/Customer\"},{\"name\":\"GetOrders\",\"path\":\"/{piCustNum}/GetOrders\",\"type\":\"invoke\",\"verb\":\"put\",\"params\":[],\"url\":\"/rest/CustomerService/Customer/{piCustNum}/GetOrders\"},{\"name\":\"GetDetails\",\"path\":\"/{piCustNum}/GetDetails\",\"type\":\"invoke\",\"verb\":\"put\",\"params\":[],\"url\":\"/rest/CustomerService/Customer/{piCustNum}/GetDetails\"},{\"path\":\"\",\"type\":\"create\",\"verb\":\"post\",\"params\":[{\"name\":\"dsCustomer\",\"type\":\"REQUEST_BODY\"}],\"url\":\"/rest/CustomerService/Customer\"},{\"path\":\"\",\"type\":\"delete\",\"verb\":\"delete\",\"params\":[{\"name\":\"dsCustomer\",\"type\":\"REQUEST_BODY\"}],\"url\":\"/rest/CustomerService/Customer\"},{\"path\":\"?filter={filter}\",\"type\":\"read\",\"verb\":\"get\",\"params\":[],\"url\":\"/rest/CustomerService/Customer?filter={filter}\"}],\"fn\":{\"GetOrders\":{},\"GetDetails\":{}},\"url\":\"/rest/CustomerService/Customer\",\"fields\":{\"eCustomer\":[{\"type\":\"integer\",\"ablType\":\"INTEGER\",\"default\":0,\"title\":\"CustNum\",\"name\":\"CustNum\"},{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"Name\",\"name\":\"Name\"},{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"Address\",\"name\":\"Address\"},{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"Phone\",\"name\":\"Phone\"},{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"SalesRep\",\"name\":\"SalesRep\"},{\"type\":\"number\",\"ablType\":\"DECIMAL\",\"default\":0,\"title\":\"Balance\",\"name\":\"Balance\"},{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"State\",\"name\":\"State\"},{\"type\":\"integer\",\"ablType\":\"INTEGER\",\"default\":0,\"title\":\"numOrders\",\"name\":\"numOrders\"}]},\"primaryKeys\":{},\"_dataSetName\":\"dsCustomer\",\"generic\":{}}]",
+      "title": "Progress Data Service",
+      "source": "jsdo",
+      "url": "http://oemobiledemo.progress.com/AuthCustomerService",
+      "catalogUrl": "http://oemobiledemo.progress.com/AuthCustomerService/static/mobile/CustomerService.json",
+      "authentication": "basic"
     }
-  ]
+  ],
+  "name": "kendoUiMobileApp",
+  "navigation": "tabstrip",
+  "view": "homeView",
+  "transition": "slide",
+  "skin": "flat"
 }
